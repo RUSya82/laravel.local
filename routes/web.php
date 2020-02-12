@@ -11,12 +11,24 @@
 |
 */
 /*sdrrggweergeergwergergergergergg*/
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'admin\AdminController@index');
 
-Route::get('/admin/test/{x}', [
-    'uses' => 'admin\AdminController@test'
-]);
+Route::get('/admin/test/{x}', 'admin\AdminController@test');
+
+//Route::get('/news', 'NewsController@index')->name('news');
+//Route::get('/news/category/{category_id}', 'NewsController@categoryOne');
+//Route::get('/news/newsone/{id}', 'NewsController@newsOne');
+
+Route::group([
+    'prefix' => 'news',
+    'as' => 'news.'
+], function () {
+    Route::get('/', 'NewsController@index')->name('news');
+    Route::get('/category/{category_id}', 'NewsController@categoryOne');
+    Route::get('/newsone/{id}', 'NewsController@newsOne');
+});
+
+
+Route::get('/about', 'AboutController');

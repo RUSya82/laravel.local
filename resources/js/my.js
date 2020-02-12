@@ -1,3 +1,3 @@
 
 
-alert("It's my");
+//alert("It's my");
