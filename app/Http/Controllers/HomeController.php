@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index(){
-        $homeroute = route('home');
+        $title = 'портал новостей';
+        $greeting = [
+            'title' => 'Добро пожаловать на наш портал новостей!',
+            'content' => 'У нас всегда свежие и актуальные новости. Присоединяйтесь!'
+        ];
+        $news = News::getAll();
 
 
-        $html = <<<php
-<nav>
-    <a href="{$homeroute}">Главная</a>
-    <a href="/admin">АДминка</a>
-    <a href="/news">Новости</a>
-    <a href="/about">о Нас</a>
-</nav>
-php;
-
-        return $html;
+        return view('main', ['title' => $title, 'greeting' => $greeting, 'news' => $news]);
     }
 }

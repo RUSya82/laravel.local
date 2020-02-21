@@ -26,10 +26,10 @@ Route::group([
     'as' => 'news.'
 ], function () {
     Route::get('/', 'NewsController@index')->name('news');
-    Route::get('/category/{category_id}', 'NewsController@categoryOne');
-    Route::get('/newsone/{id}', 'NewsController@newsOne');
+    Route::get('/category/{category_id}', 'NewsController@categoryOne')->name('oneCat');
+    Route::get('/newsone/{id}', 'NewsController@newsOne')->name('newsOne');
 });
 
 
-Route::get('/about', 'AboutController');
+Route::get('/about', 'AboutController')->name('about');
 Route::get('/main','MainController@index');
