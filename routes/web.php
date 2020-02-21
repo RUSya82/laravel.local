@@ -32,3 +32,4 @@ Route::group([
 
 
 Route::get('/about', 'AboutController');
+Route::get('/main','MainController@index');
