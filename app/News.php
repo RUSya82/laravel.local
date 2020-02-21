@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App;
 
-use App\News;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
-class NewsController extends Controller
+class News extends Model
 {
-    public $categories = [
+    public static $categories = [
         [
             'id' => 1,
             'name' => 'Sport',
@@ -25,7 +24,7 @@ class NewsController extends Controller
         ]
     ];
 
-    public $news = [
+    public static $news = [
         [
             'id' => 1,
             'title' => 'Противник российского спорта обрушился с критикой на шведских допингистов',
@@ -69,81 +68,32 @@ class NewsController extends Controller
             'content' => "Новость спорта №3"
         ]
     ];
+    public static function getOne($id){
+        foreach(static::$news as $item){
+            if($item['id'] == $id)
+                return $item;
+        }
+        return false;
+    }
+    public static function getAll(){
+        return static::$news;
+    }
 
-    /**
-     *
-     * @param array $Arr
-     * @param $param
-     * @param string $paramname
-     * @return array - массив массивов, отобранных по имени параметра $paramname
-     */
-    public function getArrayById(array $Arr, $param, string $paramname = 'id'){
-        $result =[];
-        foreach ($Arr as $element){
-            if($element[$paramname] == $param){
-                $result[] = $element;
+
+    private static function getIdByName(string $name){
+        foreach (static::$categories as $item){
+            if($item['name'] === $name)
+                return $item['id'];
+        }
+    }
+    public static function getNewsByCategory(string $categoryName){
+        $id = static::getIdByName($categoryName);
+        $news = [];
+        foreach (static::$news as $item){
+            if($item['category_id'] === $id){
+                $news[] = $item;
             }
         }
-        return $result;
+        return $news;
     }
-
-
-
-    public function index(){
-        $html = <<<php
-<nav>
-    <a href="/">Главная</a>
-    <a href="/admin">АДминка</a>
-    <a href="/news">Новости</a>
-    <a href="/about">о Нас</a>
-</nav>
-php;
-        foreach ($this->categories as $category){
-            $html .= "<a href=\"news/category/{$category['name']}\">{$category['description']}</a><br>";
-        }
-        return $html;
-
-    }
-
-
-
-
-    public function categoryOne($category_name){
-        $news = News::getNewsByCategory($category_name);
-        $html = <<<php
-<nav>
-    <a href="/">Главная</a>
-    <a href="/admin">АДминка</a>
-    <a href="/news">Новости</a>
-    <a href="/about">о Нас</a>
-</nav>
-php;
-        foreach ($news as $new){
-            $html .= "<h2><a href='/news/newsone/{$new['id']}'>{$new['title']}</a></h2><hr>";
-            //$html .= "<p>{$new['content']}</p><hr>";
-        }
-        return $html;
-
-    }
-
-
-
-    public function newsOne(int $id){
-        $news = News::getOne($id);
-        $html = <<<php
-<nav>
-    <a href="/">Главная</a>
-    <a href="/admin">АДминка</a>
-    <a href="/news">Новости</a>
-    <a href="/about">о Нас</a>
-</nav>
-php;
-        $html .= <<<php
-<h2>{$news['title']}</h2><br>
-<p>{$news['content']}</p>
-php;
-    return $html;
-    }
-
-
 }

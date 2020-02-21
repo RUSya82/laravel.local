@@ -31,7 +31,7 @@
         }
     </style>
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
+{{--    <link href="jumbotron.css" rel="stylesheet">--}}
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
