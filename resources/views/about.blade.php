@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-    <main role="main">
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
@@ -14,5 +13,5 @@
                 <p><a class="btn btn-primary btn-lg" href="{{route('news.news')}}" role="button">Читать »</a></p>
             </div>
         </div>
-    </main>
+
 @endsection

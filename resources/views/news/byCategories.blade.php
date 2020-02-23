@@ -4,7 +4,7 @@
     {{$title}}
 @endsection
 @section('content')
-    <main role="main">
+
         <div class="container">
             <div class="row">
             @forelse($news as $item)
@@ -24,5 +24,5 @@
                 @endforelse
             </div>
         </div>
-    </main>
+
 @endsection

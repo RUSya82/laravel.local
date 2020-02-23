@@ -32,6 +32,7 @@ class NewsController extends Controller
         }
         $newsAll = News::getAll();
 
+
         return view('news.one', ['news' => $news, 'newsAll' => $newsAll]);
     }
 
