@@ -19,9 +19,9 @@ class AdminController extends Controller
             //dump($request->all());
             $newNews = [
                 'id' => News::getCount(),
-                'title' => $request->newsTitle,
-                'category_id' => $request->category,
-                'content' => $request->newContent,
+                'title' => strip_tags($request->newsTitle),
+                'category_id' => (int)$request->category,
+                'content' => strip_tags($request->newContent),
             ];
 
             News::saveNews($newNews);
