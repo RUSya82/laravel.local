@@ -4,6 +4,7 @@ namespace App;
 /***
  * Прототип модели для новостей
  */
+
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
@@ -35,22 +36,34 @@ class News extends Model
      * @param $id
      * @return bool|mixed
      */
-    public static function getOne($id){
-        static::$news = include 'data.php';
-        foreach(static::$news as $item){
-            if($item['id'] == $id)
-                return $item;
+    public static function getOne($id)
+    {
+        $news = static::getAll();
+        if(array_key_exists($id, $news)){
+            return $news[$id];
         }
         return false;
     }
+    public static function getCount(){
+        return count(static::getAll());
+    }
+    public static function saveNews($news)
+    {
+        $allNews = static::getAll();
+        $allNews[] = $news;
+        $newAllNews = serialize($allNews);
+        file_put_contents('data.php', $newAllNews);
+    }
+
 
     /**
      * @param $id
      * @return bool|mixed одна категория по id
      */
-    public static function getOneCategory($id){
-        foreach (static::getCategories() as $item){
-            if($item['id'] == $id)
+    public static function getOneCategory($id)
+    {
+        foreach (static::getCategories() as $item) {
+            if ($item['id'] == $id)
                 return $item;
         }
         return false;
@@ -59,17 +72,17 @@ class News extends Model
     /**
      * @return array все новости
      */
-    public static function getAll(){
-        static::$news = include 'data.php';
-        return static::$news;
+    public static function getAll()
+    {
+        return unserialize(file_get_contents('data.php'));
     }
 
     /**
      * @return array getter для массива категорий
      */
-    public static function getCategories(){
+    public static function getCategories()
+    {
         return static::$categories;
-
     }
 
     /**
@@ -77,9 +90,10 @@ class News extends Model
      * @return mixed
      * возвращает id категории по имени
      */
-    public static function getIdByName(string $name){
-        foreach (static::$categories as $item){
-            if($item['name'] === $name)
+    public static function getIdByName(string $name)
+    {
+        foreach (static::$categories as $item) {
+            if ($item['name'] === $name)
                 return $item['id'];
         }
     }
@@ -89,12 +103,13 @@ class News extends Model
      * @return array
      * возвращает массив новостей по имени категории
      */
-    public static function getNewsByCategory(string $categoryName){
-        static::$news = include 'data.php';
+    public static function getNewsByCategory(string $categoryName)
+    {
+        $allNews = static::getAll();
         $id = static::getIdByName($categoryName);
         $news = [];
-        foreach (static::$news as $item){
-            if($item['category_id'] === $id){
+        foreach ($allNews as $item) {
+            if ($item['category_id'] == $id) {
                 $news[] = $item;
             }
         }

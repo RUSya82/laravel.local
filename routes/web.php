@@ -13,13 +13,23 @@
 /*sdrrggweergeergwergergergergergg*/
 Route::get('/', 'MainController@index')->name('home');
 
-Route::get('/admin', 'admin\AdminController@index');
+//Route::get('/admin', 'admin\AdminController@index');
 
-Route::get('/admin/test/{x}', 'admin\AdminController@test');
+//Route::get('/admin/add', 'admin\AdminController@addNews')->name('admin.addNews');
+Route::get('/admin/test2', 'admin\AdminController@test2');
 
 //Route::get('/news', 'NewsController@index')->name('news');
 //Route::get('/news/category/{category_id}', 'NewsController@categoryOne');
 //Route::get('/news/newsone/{id}', 'NewsController@newsOne');
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'as' => 'admin.'
+], function () {
+    Route::get('/', 'AdminController@index')->name('home');
+    Route::match(['post', 'get'],'/add', 'AdminController@addNews')->name('addNews');
+    Route::get('/test2', 'AdminController@test2')->name('test2');
+});
 
 Route::group([
     'prefix' => 'news',
