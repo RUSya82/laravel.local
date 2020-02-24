@@ -11,7 +11,7 @@
 |
 */
 /*sdrrggweergeergwergergergergergg*/
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'MainController@index')->name('home');
 
 Route::get('/admin', 'admin\AdminController@index');
 
@@ -32,4 +32,7 @@ Route::group([
 
 
 Route::get('/about', 'AboutController')->name('about');
-Route::get('/main','MainController@index');
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
