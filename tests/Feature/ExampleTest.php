@@ -14,10 +14,10 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get(route('news.newsOne', 0));
+        $response = $this->get(route('admin.home'));
 
         $response->assertStatus(200);
 
-        $response->assertSeeText('Противник российского спорта');
+        $response->assertSeeText('Привет, Admin!');
     }
 }
