@@ -6,7 +6,12 @@
 @section('content')
 
         <div class="container">
+            <div class="text-center mt-5">
+                <h3 >{{$title}}</h3>
+            </div>
+
             <div class="row">
+
             @forelse($news as $item)
                 <!-- Example row of columns -->
 

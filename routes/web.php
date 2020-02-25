@@ -22,8 +22,13 @@ Route::group([
     Route::get('/newsone/{id}', 'NewsController@newsOne')->name('newsOne');
 });
 
-
-Route::get('/about', 'AboutController')->name('about');
+Route::group([
+    'prefix' => 'about',
+    'as' => 'about.'
+], function () {
+    Route::get('/{data?}', 'AboutController@index')->name('about');
+    Route::post('/addfeedback', 'AboutController@addFeedback')->name('addfeedback');
+});
 
 Auth::routes();
 
