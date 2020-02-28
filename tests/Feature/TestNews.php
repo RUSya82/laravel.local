@@ -15,20 +15,20 @@ class TestNews extends TestCase
      */
     public function testExample()
     {
-        $response = $this->get(route('news.newsOne', 1));
+        $response = $this->get(route('admin.home'));
 
         $response->assertStatus(200);
 
-        $response->assertSeeText('Противник россfdийского спорта');
+        $response->assertSeeText('Привет, Admin!');
     }
 
     public function testExample2()
     {
-        $response = $this->get(route('news.newsOne', 0));
+        $response = $this->get(route('home'));
 
         $response->assertStatus(200);
 
-        $response->assertSeeText('Противник российского спорта');
+        $response->assertSeeText('Добро пожаловать');
     }
 
 }

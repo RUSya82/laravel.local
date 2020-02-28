@@ -43,7 +43,7 @@
                     </textarea>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Добавить новость" id="addNews">
+                    <input type="submit" class="btn btn-primary" value="Добавить отзыв" id="addNews">
                 </div>
             </form>
         </div>
