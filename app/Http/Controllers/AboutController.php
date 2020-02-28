@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Feedbacks;
+use App\News;
 use Illuminate\Http\Request;
 
 /**
@@ -19,7 +20,8 @@ class AboutController extends Controller
     public function index($data = null){
 
        $title = "О нас";
-        return view('about.index', ['title' => $title, 'data' => $data]);
+        $categories = News::getCategories();
+        return view('about.index', ['title' => $title, 'data' => $data,'categories' => $categories]);
     }
 
     /**

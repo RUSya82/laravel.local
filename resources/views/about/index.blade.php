@@ -4,6 +4,10 @@
     {{$title}}
 @endsection
 
+@section('nav')
+    @include('menu.main', ['categories'=>$categories])
+@endsection
+
 @section('content')
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">

@@ -11,7 +11,8 @@ class AdminController extends Controller
 
     public function index(){
         $title = "Admin panel";
-        return view('admin.index', ['title' => $title]);
+        $categories = News::getCategories();
+        return view('admin.index', ['title' => $title,'categories' => $categories]);
     }
 
     public function addNews(Request $request){
@@ -23,7 +24,6 @@ class AdminController extends Controller
                 'category_id' => (int)$request->category,
                 'content' => strip_tags($request->newContent),
             ];
-
             News::saveNews($newNews);
             return redirect('news');
         }

@@ -4,6 +4,10 @@
     {{$title}}
 @endsection
 
+@section('nav')
+    @include('menu.main', ['categories'=>$categories])
+@endsection
+
 @section('content')
 
     <div class="container mt-5 justify-content-center">
@@ -19,7 +23,7 @@
                     <label for="newsCategory">Категория новости</label>
                     <select name="category" class="form-control" id="newsCategory">
                         @foreach($categories as $item)
-                            <option value="{{$item['id']}}">{{$item['description']}}</option>
+                            <option value="{{$item->id}}">{{$item->description}}</option>
                         @endforeach
                     </select>
                 </div>

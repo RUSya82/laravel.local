@@ -14,8 +14,9 @@ class MainController extends Controller
             'content' => 'У нас всегда свежие и актуальные новости. Присоединяйтесь!'
         ];
         $news = News::getAll();
+        $categories = News::getCategories();
 
 
-        return view('main', ['title' => $title, 'greeting' => $greeting, 'news' => $news]);
+        return view('main', ['title' => $title, 'greeting' => $greeting, 'news' => $news, 'categories'=>$categories]);
     }
 }
