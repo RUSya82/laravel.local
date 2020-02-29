@@ -17,7 +17,7 @@ class CategoriesSeeder extends Seeder
     private function getData()
     {
         $data = [];
-        for ($i = 0; $i < 10; $i++) {
+
             $data = [
                 [
                     'name' => 'govenment',
@@ -40,7 +40,7 @@ class CategoriesSeeder extends Seeder
                     'description' => 'Экология',
                 ],
             ];
-        }
+
         return $data;
     }
 }
