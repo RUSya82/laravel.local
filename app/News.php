@@ -52,10 +52,7 @@ class News extends Model
 
     public static function saveNews($news)
     {
-        $allNews = static::getAll();
-        $allNews[] = $news;
-        $newAllNews = serialize($allNews);
-        file_put_contents('data.php', $newAllNews);
+        DB::table('news')->insert($news);
     }
 
 

@@ -17,12 +17,13 @@ class AdminController extends Controller
 
     public function addNews(Request $request){
         if($request->isMethod('post')){
-            //dump($request->all());
             $newNews = [
-                'id' => News::getCount(),
                 'title' => strip_tags($request->newsTitle),
-                'category_id' => (int)$request->category,
                 'content' => strip_tags($request->newContent),
+                'category_id' => (int)$request->category,
+                'isModerated' => 0,
+                'author' => 'Sample',
+                'image' => ''
             ];
             News::saveNews($newNews);
             return redirect('news');

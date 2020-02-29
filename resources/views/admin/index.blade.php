@@ -5,7 +5,7 @@
 @endsection
 
 @section('nav')
-    @include('menu.main', ['categories'=>$categories])
+    @include('menu.admin', ['categories'=>$categories])
 @endsection
 
 @section('content')
