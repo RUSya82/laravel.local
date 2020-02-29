@@ -474,7 +474,7 @@
       <workItem from="1581583642433" duration="63869000" />
       <workItem from="1582732951531" duration="2042000" />
       <workItem from="1582804247457" duration="613000" />
-      <workItem from="1582898500742" duration="12916000" />
+      <workItem from="1582898500742" duration="12999000" />
     </task>
     <task id="LOCAL-00001" summary="сделал отзывы">
       <created>1582628773569</created>
@@ -533,11 +533,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120919000" />
+    <option name="totallyTimeSpent" value="121002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25746268" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
