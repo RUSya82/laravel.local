@@ -19,10 +19,13 @@ class AboutController extends Controller
      */
     public function index($data = null){
 
-       $title = "О нас";
         $categories = News::getCategories();
-        return view('about.index', ['title' => $title, 'data' => $data,'categories' => $categories]);
+        return view('about.index', [
+            'title' => "О нас",
+            'categories' => $categories
+        ]);
     }
+    //return redirect()->route('news.all')->with('success', 'Новость успешно создана!');
 
     /**
      * @param Request $request
@@ -39,11 +42,7 @@ class AboutController extends Controller
                 'feedbackText' => strip_tags($request->feedbackText),
             ];
 
-            if(Feedbacks::saveFeedbacks($newFeedbacks)){
-                $data = true;
-            };
-
-            return redirect(route('about.about', $data));
+            return redirect(route('about.about'))->with('success', 'Отзыв добавлен успешно!');
         }
     }
 

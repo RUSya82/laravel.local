@@ -26,10 +26,11 @@ Route::group([
     'prefix' => 'about',
     'as' => 'about.'
 ], function () {
-    Route::get('/{data?}', 'AboutController@index')->name('about');
+    Route::get('/', 'AboutController@index')->name('about');
     Route::post('/addfeedback', 'AboutController@addFeedback')->name('addfeedback');
 });
 
 Auth::routes();
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
