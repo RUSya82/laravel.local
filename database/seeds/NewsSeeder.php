@@ -22,7 +22,7 @@ class NewsSeeder extends Seeder
             $data[] = [
                 'title' => $faker->realText(rand(20, 50)),
                 'content' => $faker->realText(rand(1000, 2000)),
-                'category_id'=> $faker->numberBetween(0,4),
+                'category_id'=> $faker->numberBetween(1,5),
                 'isModerated' => true,
                 'image' => "",
                 'author' => $faker->name,

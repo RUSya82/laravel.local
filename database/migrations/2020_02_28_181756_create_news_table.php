@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('title')->comment('Заголовок новости');
             $table->text('content')->comment('Содержание новости');
-            $table->integer('category_id')->nullable(false);
+            $table->bigInteger('category_id')->unsigned()->nullable(false)->default(1);
             $table->boolean('isModerated')
                 ->default(false)->comment('статус модерации');
             $table->string('image')->default('');

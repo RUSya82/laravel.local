@@ -17,7 +17,7 @@
                     <div class="col-md-4 mb-3 mt-5">
                         <h3>{{ $item->title }}</h3>
                         <p>{{ mb_substr($item->content, 0, 100) }} ...</p>
-                        <p><a class="btn btn-secondary" href="{{route('news.newsOne', $item->id)}}" role="button">Читать
+                        <p><a class="btn btn-secondary" href="{{route('news.newsOne', $item)}}" role="button">Читать
                                 »</a></p>
                     </div>
 
@@ -26,6 +26,7 @@
                 @empty
                     <p>Нет новостей</p>
                 @endforelse
+                {{ $news->links() }}
             </div>
         </div>
 

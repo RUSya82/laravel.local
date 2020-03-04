@@ -1,70 +1,28 @@
 <?php
 
 namespace App;
-/***
- * Прототип модели для новостей
- */
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
+/**
+ * Class News
+ * @package App
+ * @property string title
+ * @property string content
+ * @property int category_id
+ * @property int isModerated
+ * @property string image
+ * @property string author
+ * @property int created_at
+ * @property int updated_at
+ */
 class News extends Model
 {
+    protected $table = 'news';
 
-    /**
-     * вернёт одну новость по id
-     * @param $id
-     * @return bool|mixed
-     */
-    public static function getOne($id)
-    {
-        return DB::table('news')->find((int)$id);
-    }
+    protected $guarded = ['id', 'isModerated', 'created_at', 'updated_at'];
 
-    /**
-     * @return array все новости
-     */
-    public static function getAll()
-    {
-        $data = DB::table('news')->get();
-
-        return $data;
-    }
-
-    public static function getSomeAll($count)
-    {
-        $data = DB::table('news')->get()->take($count);
-
-        return $data;
-    }
-
-    /**
-     * @return array getter для массива категорий
-     */
-    public static function getCategories()
-    {
-        $categories = DB::table('categories')->get();
-        return $categories;
-    }
-
-
-
-
-    public static function saveNews($news)
-    {
-        DB::table('news')->insert($news);
-    }
-
-
-    /**
-     * @param string $categoryName
-     * @return array
-     * возвращает массив новостей по имени категории
-     */
-    public static function getNewsByCategory(string $categoryName)
-    {
-        $category_id = DB::table('categories')->select('id')->where('name', $categoryName)->first()->id;
-        $news = DB::table('news')->where('category_id', $category_id)->get();
-        return $news;
+    public  function category() {
+        return $this->belongsTo(Category::class, 'category_id')->first();
     }
 }

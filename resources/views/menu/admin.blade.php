@@ -13,7 +13,7 @@
                 <a class="nav-link" href="{{route('news.news')}}">Новости</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.home')}}">Админка</a>
+                <a class="nav-link" href="{{route('admin.index')}}">Админка</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.addNews')}}">Добавить новость</a>

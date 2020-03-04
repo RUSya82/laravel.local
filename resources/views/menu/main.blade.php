@@ -15,7 +15,7 @@
                     <a class="nav-link" href="{{route('news.news')}}">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin.home')}}">Админка</a>
+                    <a class="nav-link" href="{{route('admin.index')}}">Админка</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -23,7 +23,7 @@
                        aria-haspopup="true" aria-expanded="false">Категории новостей</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         @foreach($categories as $category)
-                            <a class="dropdown-item" href="{{route('news.oneCat', $category->name)}}">{{$category->description}}</a>
+                            <a class="dropdown-item" href="{{route('news.oneCat', $category)}}">{{$category->description}}</a>
                         @endforeach
                     </div>
                 </li>

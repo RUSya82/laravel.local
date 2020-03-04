@@ -14,7 +14,7 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->string('name')->comment('имя на латинице для url')->nullable(false);
             $table->string('description')->comment('наименование категории для поиска')->nullable(false);
         });

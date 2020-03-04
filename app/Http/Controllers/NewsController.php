@@ -2,40 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $news = News::getAll();
-        $title = "Портал новостей";
-        //dd($news);
-        $categories = News::getCategories();
-        return view('news.all', ['news' => $news, 'title' => $title, 'categories' => $categories]);
+        $news = News::query()->paginate(6);
+        $categories = Category::all();
+        return view('news.all', ['news' => $news, 'title' => "Портал новостей", 'categories' => $categories]);
+    }
+
+    /**
+     * @param Category $category
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function categoryOne(Category $category)
+    {
+        return view('news.byCategories', [
+            'news' => $category->news()->paginate(6),
+            'title' => $category->description,
+            'categories' => Category::all()
+        ]);
     }
 
 
-    public function categoryOne($category_name)
+    public function newsOne(News $news)
     {
-        $news = News::getNewsByCategory($category_name);
-        $title = DB::table('categories')->where('name', $category_name)->first()->description;
-        $categories = News::getCategories();
-        return view('news.byCategories', ['news' => $news, 'title' => $title,'categories' => $categories]);
-
-    }
-
-
-    public function newsOne(int $id)
-    {
-        $news = News::getOne($id);
         if (empty($news)) {
             return redirect('news');
         }
-        $categories = News::getCategories();
-        $newsAll = News::getSomeAll(12);
+        $categories = Category::all();
+        $newsAll = News::all();
         return view('news.one', ['news' => $news, 'newsAll' => $newsAll,'categories' => $categories]);
     }
 
