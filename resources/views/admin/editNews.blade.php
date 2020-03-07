@@ -28,8 +28,7 @@
                 </div>
                 <div class="form-group ">
                     <label for="content">Текст новости</label>
-                    <textarea type="text" name="content" class="form-control" id="content" rows='5' required >
-                        {{$news->content}}
+                    <textarea type="text" name="content" class="form-control" id="content" rows='5' required >{{ $news->content }}
                     </textarea>
                 </div>
                 <div class="form-group">
@@ -37,7 +36,6 @@
                 </div>
             </form>
         </div>
-
     </div>
 
 @endsection

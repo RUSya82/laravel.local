@@ -29,8 +29,7 @@
                 </div>
                 <div class="form-group ">
                     <label for="content">Текст новости</label>
-                    <textarea type="text" name="content" class="form-control" id="content" rows='5' required>
-                    </textarea>
+                    <textarea type="text" name="content" class="form-control" id="content" rows='5' required></textarea>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Добавить новость" id="addNews">

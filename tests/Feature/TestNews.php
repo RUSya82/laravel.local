@@ -15,7 +15,7 @@ class TestNews extends TestCase
      */
     public function testExample()
     {
-        $response = $this->get(route('admin.home'));
+        $response = $this->get(route('admin.index'));
 
         $response->assertStatus(200);
 

@@ -28,7 +28,7 @@ class NewsController extends Controller
             $news = new News();
             $news->fill($request->all());
             $news->save();
-            return redirect('news');
+            return redirect()->route('admin.index')->with('success', 'Новость успешно добавлена!');
         }
 
         $categories = Category::all();
