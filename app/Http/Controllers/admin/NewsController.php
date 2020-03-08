@@ -24,21 +24,32 @@ class NewsController extends Controller
 
     public function create(Request $request)
     {
+        $news = new News();
         if ($request->isMethod('post')) {
-            $news = new News();
+
+
+            //$this->validate($request, News::rules());
+            $this->validate($request, News::rules(), [], News::attributeNames());
             $news->fill($request->all());
             $news->save();
             return redirect()->route('admin.index')->with('success', 'Новость успешно добавлена!');
         }
+        if(!empty($request->old())){
+            $news->fill($request->old());
+        }
 
         $categories = Category::all();
-        return view('admin.addNews', ['title' => 'Добавление новости', 'categories' => $categories]);
+        return view('admin.addNews', [
+            'title' => 'Добавление новости',
+            'categories' => $categories,
+            'news'=>$news] );
     }
 
 
     public function save(Request $request, News $news)
     {
         if ($request->isMethod('post')) {
+            $this->validate($request, News::rules(), [], News::attributeNames());
             $news->fill($request->all());
             $news->save();
             return redirect()->route('admin.index')->with('success', 'Новость успешно изменена!');
