@@ -10,6 +10,7 @@ class AdminController extends Controller
 {
 
     public function index(){
+        dd(\Auth::user()->role()->role);
         $title = "Admin panel";
         $categories = News::getCategories();
         return view('admin.index', ['title' => $title,'categories' => $categories]);

@@ -2,6 +2,11 @@
 
 namespace App\Http;
 
+
+use App\Http\Middleware\CheckCreateNews;
+use App\Http\Middleware\CheckEditNews;
+use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\isEditor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -52,6 +57,10 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'is_admin' => isAdmin::class,
+        'is_editor' => isEditor::class,
+        'check_edit_news' => CheckEditNews::class,
+        'check_create_news' =>CheckCreateNews::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
