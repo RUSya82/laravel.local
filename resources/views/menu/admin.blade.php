@@ -14,15 +14,16 @@
                 <a class="nav-link" href="{{route('news.news')}}">Новости</a>
             </li>
 
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Панель админки</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="{{route('admin.index')}}">Админка</a>
-                        <a class="dropdown-item" href="{{route('admin.users')}}">Пользователи</a>
-                        <a class="dropdown-item" href="{{route('admin.addNews')}}">Добавить новость</a>
-                </div>
-            </li>
+            @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Панель админки</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="{{route('admin.index')}}">Админка</a>
+                            <a class="dropdown-item" href="{{route('admin.users')}}">Пользователи</a>
+                            <a class="dropdown-item" href="{{route('admin.addNews')}}">Добавить новость</a>
+                    </div>
+                </li>
+            @endauth
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Категории новостей</a>
