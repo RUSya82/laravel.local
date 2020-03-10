@@ -10,13 +10,22 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public static function rules(){
+        $roles = (new Roles())->getTable();
+        return [
+            'name' => 'required|min:3|max:20',
+            'email' => 'required|email',
+            'role_id' => "required|exists:{$roles},id",
+        ];
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'role_id',
     ];
 
     /**
